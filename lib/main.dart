@@ -16,8 +16,11 @@ class RecipesApp extends StatelessWidget {
     return MaterialApp(
       title: "Recipe Calculator",
       theme: theme.copyWith(
-          colorScheme: theme.colorScheme
-              .copyWith(primary: Colors.grey, secondary: Colors.black)),
+        colorScheme: theme.colorScheme.copyWith(
+          primary: Colors.grey,
+          secondary: Colors.black
+        )
+      ),
       home: const MyHomePage(title: "Recipe Calculator"),
     );
   }
@@ -52,8 +55,26 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView.builder(
             itemCount: Recipe.samples.length,
             itemBuilder: (BuildContext context, int index) {
-              return buildRecipeCard(Recipe.samples[index]);
-            }),
+              // TODO: Add GestureDetector
+
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return Text('Detail Page');
+                      },
+                    ),
+                  );
+                },
+                child: buildRecipeCard(Recipe.samples[index]),
+              );
+
+
+              // return  buildRecipeCard(Recipe.samples[index]);
+            }
+        ),
       ),
     );
   }
@@ -61,7 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget buildRecipeCard(Recipe recipe) {
     return Card(
       elevation: 2.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0)
+      ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -71,11 +94,12 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 14.0,
             ),
             Text(
-              recipe.label,
+                recipe.label,
               style: const TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'Palatino'),
+                fontSize: 20.0,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Palatino'
+              ),
             )
           ],
         ),
