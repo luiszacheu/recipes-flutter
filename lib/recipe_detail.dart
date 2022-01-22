@@ -51,7 +51,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
                   //9
                   //TODO: Add ingredient.quantity
                   return Text(
-                      '${ingredient.quantity} ${ingredient.measure} ${ingredient.name}');
+                      '${ingredient.quantity * _sliderVal} ${ingredient.measure} ${ingredient.name}');
                 },
               ),
             ),
